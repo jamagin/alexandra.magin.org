@@ -1,0 +1,16 @@
+baseURL = 'https://alexandra.magin.org/'
+languageCode = 'en-US'
+title = 'Alexandra Magin'
+author = 'Alexandra Magin'
+
+enableRobotsTXT = true
+
+theme = 'hugo-bearblog'
+
+[params]
+  description = 'Alexandra Magin'
+  # favicon = "static/favicon.ico"
+  title = 'Alexandra Magin'
+
+  dateFormat = '2006-01-02'
+
