@@ -35,7 +35,7 @@ Only use hex and base64 for pretty-printing"?
 
 Here's an obvious approach:
 
-```
+```Rust
 fn hex_u8_to_u8(x: u8) -> u8 {
     if x >= b'0' && x <= b'9' {
         return x - b'0'
@@ -52,7 +52,7 @@ If you've spent any time thinking about logical operators and if/else clauses,
 you know what's wrong, but lets [put it in godbolt.org](https://godbolt.org/z/d8j3bvKaM)
 (`rustc -C opt-level=1` but `#[inline(never)]` on the function):
 
-```
+```NASM
 example::hex_u8_to_u8::h8e8fcdde4917722f:
         lea     eax, [rdi - 48]
         cmp     al, 10
@@ -78,7 +78,7 @@ Eww. There's two branches, and we return in two different places. That doesn't w
 So, here's my reasonably-readable but constant-time (at least on this compiler
 version and architecture version):
 
-```
+```Rust
 fn hex_u8_to_u8(x: u8) -> u8 {
     let is_letter = (((x >= b'A') & (x <= b'F')) | ((x >= b'a') & (x <=b'f'))) as u8;
     let letter_off = (x & 0b0000111) + 9;
@@ -90,7 +90,7 @@ fn hex_u8_to_u8(x: u8) -> u8 {
 
 Again [in godbolt.org](https://godbolt.org/z/d4n6rWP77):
 
-```
+```NASM
 example::hex_u8_to_u8::h8e8fcdde4917722f:
         mov     eax, edi
         and     al, -33
