@@ -111,12 +111,13 @@ example::hex_u8_to_u8::h8e8fcdde4917722f:
         ret
 ```
 
-Well, we have no branches and a single return. Is this constant-time
-code? Probably. `add`/`and`/`xor`/`cmp` should all be. `mov` between registers
-is. `lea` looks scary but it's just provided for array indexing and used
-to do a simple ALU operation here, not a load from memory. So what's
-`cmovae`? The optimizer has cleverly turned a multipication into a
-conditional move. Is that constant-time? [Intel says we're okay](https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/secure-coding/mitigate-timing-side-channel-crypto-implementation.html):
+That looks pretty nicely optimized! So, we have no branches and a single return.
+Is this constant-time code? Probably. `add`/`and`/`xor`/`cmp` should all be.
+`mov` between registers is. `lea` looks scary but it's just provided for array
+indexing and used to do a simple ALU operation here, not a load from memory. So
+what's `cmovae`? The optimizer has cleverly turned a multipication into a
+conditional move. Is that constant-time? [Intel says we're
+okay](https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/secure-coding/mitigate-timing-side-channel-crypto-implementation.html):
 
 > The CMOVcc instruction runs in time independent of its arguments in all current x86 architecture processors. This includes variants that load from memory. The load is performed before the condition is tested.
 
