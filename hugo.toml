@@ -13,4 +13,13 @@ theme = 'hugo-bearblog'
   title = 'Alexandra Magin'
 
   dateFormat = '2006-01-02'
+  math = false
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]

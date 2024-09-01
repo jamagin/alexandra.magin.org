@@ -24,4 +24,9 @@
         pre code {
             color: #dcd;
         }
-    </style>
+    }
+</style>
+
+{{ if .Param "math" }}
+{{ partialCached "math.html" . }}
+{{ end }}
