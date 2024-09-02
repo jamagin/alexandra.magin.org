@@ -132,7 +132,7 @@ destroying the constant-time property of this code.
 ## Update, idiomatic Rust error handling
 
 After looking at some other Rust I was pointed to, such as [base16ct](https://docs.rs/base16ct/latest/src/base16ct/lib.rs.html#116)
-I tried to add some error handling to that function and it seems like
+I tried to add some error handling to that function ([full source](https://github.com/jamagin/cryptopals/blob/874714562d36ba8d61e9a0a6538ccf4a87daa8c0/src/bytes.rs#L6)) and it seems like
 this did fine:
 
 ```Rust
