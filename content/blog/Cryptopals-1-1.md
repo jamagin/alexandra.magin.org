@@ -128,3 +128,71 @@ is constant time (with a specific compiler and architecture). In the
 future, I'd like to look at the rest of the code, and I'd really
 like to do idiomatic Rust error handling of invalid input without
 destroying the constant-time property of this code.
+
+## Update, idiomatic Rust error handling
+
+After looking at some other Rust I was pointed to, such as [base16ct](https://docs.rs/base16ct/latest/src/base16ct/lib.rs.html#116)
+I tried to add some error handling to that function and it seems like
+this did fine:
+
+```Rust
+#[derive(Debug, PartialEq)]
+pub struct HexParseError;
+
+fn hex_u8_to_u8(x: u8) -> Result<u8, HexParseError> {
+    let is_letter = (((x >= b'A') & (x <= b'F')) | ((x >= b'a') & (x <=b'f'))) as u8;
+    let letter_off = (x & 0b0000111) + 9;
+    let is_digit = ((x >= b'0') & (x <= b'9')) as u8;
+    let digit_off = x & 0b0001111;
+    let output = is_letter * letter_off + is_digit * digit_off;
+    match is_letter | is_digit {
+        0 => Err(HexParseError),
+        _ => Ok(output),
+    }
+}
+```
+
+```NASM
+example::hex_u8_to_u8::h016b68b3d3772cbd:
+        mov     eax, edi
+        and     al, -33
+        add     al, -71
+        lea     ecx, [rdi - 58]
+        mov     esi, edi
+        and     sil, 7
+        add     sil, 9
+        and     dil, 15
+        xor     r8d, r8d
+        cmp     cl, -10
+        setb    cl
+        movzx   edx, dil
+        cmovb   edx, r8d
+        cmp     al, -6
+        setb    al
+        movzx   esi, sil
+        cmovb   esi, r8d
+        and     al, cl
+        add     dl, sil
+        ret
+```
+
+I decided to run `cargo clippy` and it suggested that I change those
+range comparisons to `(a..b).contains(&x)` which looked like it might
+ruin our day:
+
+```Rust
+fn hex_u8_to_u8(x: u8) -> Result<u8, HexParseError> {
+    let is_letter = ((b'A'..=b'F').contains(&x) | (b'a'..=b'f').contains(&x)) as u8;
+    let letter_off = (x & 0b0000111) + 9;
+    let is_digit = x.is_ascii_digit() as u8;
+    let digit_off = x & 0b0001111;
+    let output = is_letter * letter_off + is_digit * digit_off;
+    match is_letter | is_digit {
+        0 => Err(HexParseError),
+        _ => Ok(output),
+    }
+}
+```
+
+I won't repeat the assembly, because it gave me the same output.
+I'm impressed.
