@@ -1,21 +1,25 @@
 <span style="grid-column: 1;text-align: left;">
     <a href="https://hachyderm.io/@recursive" alt="Mastodon" rel="me">
-    <img src="/icons/mastodon/logo-purple.svg"/ style="height:20px">
-</a>
+        <img src="/icons/mastodon/logo-purple.svg"/ style="height:20px">
+    </a>
+    
+    <a href="https://github.com/jamagin/" alt="GitHub" rel="me">
+        <picture>
+            <source type="image/svg+xml" srcset="/icons/github-mark/github-mark-white.svg" media="(prefers-color-scheme: dark)" style="height:20px"/>
+            <source type="image/svg+xml" srcset="/icons/github-mark/github-mark.svg" media="(prefers-color-scheme: light)"/ style="height:20px">
+            <img src="/icons/github-mark/github-mark.svg"/ style="height:20px">
+        </picture>
+    </a>
+    
+    <a href="https://www.linkedin.com/in/jamagin/" alt="LinkedIn" rel="me">
+        <img src="/icons/LinkedIn-Logos/LI-In-Bug.png"/ style="height:20px">
+    </a>
+</span>
 
-<a href="https://github.com/jamagin/" alt="GitHub" rel="me">
-    <picture>
-        <source type="image/svg+xml" srcset="/icons/github-mark/github-mark-white.svg" media="(prefers-color-scheme: dark)" style="height:20px"/>
-        <source type="image/svg+xml" srcset="/icons/github-mark/github-mark.svg" media="(prefers-color-scheme: light)"/ style="height:20px">
-        <img src="/icons/github-mark/github-mark.svg"/ style="height:20px">
-    </picture>
-</a>
-
-<a href="https://www.linkedin.com/in/jamagin/" alt="LinkedIn" rel="me">
-    <img src="/icons/LinkedIn-Logos/LI-In-Bug.png"/ style="height:20px">
-</a>
+<span style="grid-column: 2;text-align: center;">
+    <a href="/index.xml">RSS/Atom feed</a>
 </span>
 
 <span style="grid-column: 3;text-align: right;">
-{{ if ne .Site.Params.hideMadeWithLine true }}Made with <a href="https://github.com/janraasch/hugo-bearblog/">Hugo ʕ•ᴥ•ʔ Bear</a>{{ end }}
+    {{ if ne .Site.Params.hideMadeWithLine true }}Made with <a href="https://github.com/janraasch/hugo-bearblog/">Hugo ʕ•ᴥ•ʔ Bear</a>{{ end }}
 </span>
