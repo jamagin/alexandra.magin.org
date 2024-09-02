@@ -177,8 +177,8 @@ example::hex_u8_to_u8::h016b68b3d3772cbd:
 ```
 
 I decided to run `cargo clippy` and it suggested that I change those
-range comparisons to `(a..b).contains(&x)` which looked like it might
-ruin our day:
+range comparisons to `(a..b).contains(&x)` and `.is_ascii_digit()` which looked
+like it might ruin our day:
 
 ```Rust
 fn hex_u8_to_u8(x: u8) -> Result<u8, HexParseError> {
