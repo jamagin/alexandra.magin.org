@@ -11,6 +11,8 @@ learning in a Discord I'm in, and somebody again told me about
 [Cryptopals](https://cryptopals.com/), and as a result I was nerdsniped into
 looking at it, and in this case, starting to do it.
 
+<!--more-->
+
 I'm not good at doing things the easy way when I know that doing
 something in a more difficult way will help me learn something I want
 to learn, so I've started out in Rust and I'm trying to write (at least
