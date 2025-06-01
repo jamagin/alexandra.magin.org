@@ -23,6 +23,8 @@ theme = 'hugo-bearblog'
         [markup.goldmark.extensions.passthrough.delimiters]
           block = [['\[', '\]'], ['$$', '$$']]
           inline = [['\(', '\)']]
+  [markup.highlight]
+    style = 'catppuccin-mocha'
 
 [outputs]
   home = ['html', 'rss']
