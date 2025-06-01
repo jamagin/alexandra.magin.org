@@ -6,24 +6,35 @@
         color: #444;
     }
 
-    code {
+    code:not(.highlight) {
         padding: 2px 5px;
         background-color: #f2e2f2;
     }
+    {{ partial "css/syntax-light.css" . | safeCSS }}
 
+
+    div.highlight {
+        background-color: #ede;
+    }
 
     @media (prefers-color-scheme: dark) {
         body {
             background-color: #323;
             color: #ddd;
         }
-        code {
+        code:not(.highlight) {
             background-color: #545;
         }
 
-        pre code {
+        pre:not(.highlight) code:not(.highlight) {
             color: #dcd;
         }
+
+        div.highlight {
+            background-color: #212;
+        }
+
+         {{ partial "css/syntax-dark.css" . | safeCSS }}
     }
 
     footer {

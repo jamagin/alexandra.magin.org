@@ -24,7 +24,7 @@ theme = 'hugo-bearblog'
           block = [['\[', '\]'], ['$$', '$$']]
           inline = [['\(', '\)']]
   [markup.highlight]
-    style = 'catppuccin-mocha'
+    noclasses = false
 
 [outputs]
   home = ['html', 'rss']
