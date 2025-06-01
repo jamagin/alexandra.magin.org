@@ -1,14 +1,14 @@
 {{ define "main" }}
-<content>
+{{ .Content }}
   {{ if .Data.Singular }}
   <h3 style="margin-bottom:0">Filtering for "{{ .Title }}"</h3>
   <small>
     <a href="{{ "blog" | relURL }}">Remove filter</a>
   </small>
   {{ end }}
-  <dl class="blog-posts">
+  <ul class="blog-posts">
     {{ range .Pages }}
-    <dt>
+    <li>
       <span>
         <i>
           <time datetime='{{ .Date.Format "2006-01-02" }}' pubdate>
@@ -16,19 +16,15 @@
           </time>
         </i>
       </span>
-      <a href="{{ .Permalink }}">{{ .Title }}</a>
-    </dt>
-    <dd class="preview">
-      <a href="{{ .Permalink }}" style="text-decoration: none">{{ .Summary | plainify }}</a>
-    </dd>
+      {{ .Render "card" }}
+    </li>
     {{ else }}
-    <dt>
+    <li>
       No posts yet
-    </dt>
+    </li>
     {{ end }}
-  </dl>
+  </ul>
   {{ if .Data.Singular }}
-  {{else}}
     <small>
       <div>
         {{ range .Site.Taxonomies.tags }}
@@ -37,5 +33,4 @@
       </div>
     </small>
     {{ end }}
-</content>
 {{ end }}
