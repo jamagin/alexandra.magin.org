@@ -1,9 +1,11 @@
 ---
 type: blog
-title: "Cryptopals 1-1: constant-time, for practice"
+title: "Cryptopals 1: constant-time, for practice"
 date: 2024-09-01
 tags: ["cryptopals", "rust"]
 draft: false
+aliases:
+    - "cryptopals-1-1"
 ---
 
 I happened to mention some cryptography-related things I was
