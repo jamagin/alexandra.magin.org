@@ -1,7 +1,7 @@
 {{ define "main" }}
   {{ .Content }}
     <ul class="blog-posts">
-    {{ range (site.GetPage "blog").Pages }}
+    {{ range site.RegularPages }}
     <li>
       <span>
         <i>
